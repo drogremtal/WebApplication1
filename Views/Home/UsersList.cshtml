@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "UsersList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var data = Model;
+}
+
+<h1>UsersList</h1>
+
+@*<input type="button" value="Создать пользователей" />*@
+@*@Html.ActionLink("Создать пользователей","CreateUsers","Home")*@
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Login</th>
+        <th>Password</th>
+        <th>Status</th>>
+        <th>Ban</th>
+    </tr>
+    
+    @{foreach (var item in data)
+        {
+        <tr  style= @(item.Ban == 1 ? "background-color:crimson":"")>
+            <td>@item.Id</td>
+            <td>@item.Login</td>
+            <td>@item.Password</td>
+            <td>@item.Status</td>
+            <td>@item.Ban</td>
+            <td>
+                <a href="/Home/SetBunUser/?id=@item.Id&ban=@item.Ban"> @(item.Ban == 1 ? "Разблокировать":"Заблокировать")</a>
+            </td>
+        </tr>
+            }
+        }
+    </table>
+
+
